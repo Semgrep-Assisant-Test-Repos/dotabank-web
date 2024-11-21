@@ -20,7 +20,9 @@ jobs:
     name: semgrep/ci
     # If you are self-hosting, change the following `runs-on` value:
     runs-on: ubuntu-latest
-
+    permissions:
+      id-token: write
+      contents: read
     container:
       # A Docker image with Semgrep installed. Do not change this.
       image: semgrep/semgrep
