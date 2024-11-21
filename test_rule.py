@@ -78,6 +78,7 @@ def check_top_level_component(
     delimiter: str = "==========",
 ) -> bool:
     # data = yaml.load(yaml_string)
+    logger.info(f"Adding an info log to produce a new finding:\n{yaml_string}")
     good_code = rule_var.good_code
     bad_code = rule_var.bad_code
     language = rule_var.language
