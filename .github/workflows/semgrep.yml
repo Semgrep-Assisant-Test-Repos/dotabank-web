@@ -37,6 +37,6 @@ jobs:
           # Connect to Semgrep AppSec Platform through your SEMGREP_APP_TOKEN.
           # Generate a token from Semgrep AppSec Platform > Settings
           # and add it to your GitHub secrets.
-          SEMGREP_APP_URL: https://dev2.semgrep.dev
+          SEMGREP_APP_URL: https://rohit-pr-comment.dev2.semgrep.dev
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
 
