@@ -433,3 +433,8 @@ if __name__ == "__main__":
         issue = deployment.issues.filter_by(id=issue_id).one()
         prompt_vars = IssuePromptVars(issue)
         triage_issue(prompt_vars)
+
+    import psycopg2
+    conn = psycopg2.connect(
+        "dbname=test user=postgres password='thisisapassword!#@'"
+    )
