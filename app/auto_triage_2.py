@@ -56,7 +56,11 @@ conn = psycopg2.connect(
 
 
 conn = psycopg2.connect(
-    "dbname=test user=postgres password='thisisapassword!#@'"
+    import os
+
+    conn = psycopg2.connect(
+        "dbname=test user=postgres password=" + os.getenv('DB_PASSWORD')
+    )
 )
 
 
