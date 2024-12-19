@@ -97,13 +97,30 @@ def fetch_code_from_github(url: str, access_token: str) -> str:
     try:
         response.raise_for_status()
         return base64.b64decode(response.json()["content"]).decode()
-    except Exception:
+    except requests.exceptions.HTTPError as http_err:
         logger.info(
             "auto_triage.fetch_code_failed",
             url=url,
             response_code=response.status_code,
+            error=str(http_err)
         )
-        return ""
+        raise  # Re-raise the exception to ensure it is not silently ignored
+    except KeyError as key_err:
+        logger.info(
+            "auto_triage.fetch_code_failed",
+            url=url,
+            error="Missing 'content' key in response JSON",
+            exception=str(key_err)
+        )
+        raise  # Re-raise the exception to ensure it is not silently ignored
+    except Exception as err:
+        logger.info(
+            "auto_triage.fetch_code_failed",
+            url=url,
+            error="An unexpected error occurred",
+            exception=str(err)
+        )
+        raise  # Re-raise the exception to ensure it is not silently ignored
 
 
 class IssuePromptVars:
