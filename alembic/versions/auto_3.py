@@ -436,5 +436,10 @@ if __name__ == "__main__":
 
     import psycopg2
     conn = psycopg2.connect(
-        "dbname=test user=postgres password='thisisapassword!#@'"
+        import os
+
+        # Ensure that the environment variable DB_PASSWORD is set in your environment
+        conn = psycopg2.connect(
+            "dbname=test user=postgres password=" + os.getenv('DB_PASSWORD')
+        )
     )
