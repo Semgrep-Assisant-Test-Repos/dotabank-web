@@ -97,13 +97,13 @@ def fetch_code_from_github(url: str, access_token: str) -> str:
     try:
         response.raise_for_status()
         return base64.b64decode(response.json()["content"]).decode()
-    except Exception:
+    except requests.exceptions.HTTPError as e:
         logger.info(
             "auto_triage.fetch_code_failed",
             url=url,
             response_code=response.status_code,
         )
-        return ""
+        raise e
 
 
 class IssuePromptVars:
